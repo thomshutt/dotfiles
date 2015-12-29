@@ -1,0 +1,6 @@
+#!/bin/sh
+
+FILES_PATTERN='\.(java|rb|feature|go|json)(\..+)?$'
+FORBIDDEN='thom'
+
+git diff --cached --name-only | grep -E $FILES_PATTERN | xargs grep -i $FORBIDDEN && echo "COMMIT REJECTED Found '$FORBIDDEN' references. Please remove them before commiting" && exit 1
